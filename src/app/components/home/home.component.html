@@ -1,0 +1,43 @@
+<!-- <app-header></app-header>
+
+<app-lista-usuario></app-lista-usuario>
+
+<app-footer>
+    
+</app-footer> -->
+
+
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav >
+      
+  
+  
+    </mat-sidenav>
+  
+    <mat-toolbar>       
+           
+      <p> Aplicacion CRUD TGestiona</p>
+      
+      <button mat-icon-button
+              (click)="sidenav.toggle()">
+        <mat-icon>language</mat-icon>
+      </button>
+      
+      <span class="spacer"></span>      
+    </mat-toolbar>
+     <app-lista-usuario></app-lista-usuario>
+ 
+    <app-lista-producto></app-lista-producto>
+
+      <app-lista-sucursal></app-lista-sucursal>
+  
+    
+
+
+    <div class="container">
+      
+    </div>
+  
+  
+  </mat-sidenav-container>
+  
