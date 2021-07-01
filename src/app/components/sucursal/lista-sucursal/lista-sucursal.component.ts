@@ -4,6 +4,7 @@ import { MatTable } from '@angular/material/table';
 import { Sucursal } from 'src/app/interfaces/sucursales.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { SucursalComponent } from '../sucursal/sucursal.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-lista-sucursal',
@@ -22,13 +23,15 @@ export class ListaSucursalComponent implements OnInit {
 
   constructor(
   private sucursalService: SucursalService,
-  public dialog: MatDialog
+  public dialog: MatDialog,
+  private changeDetectorRefs: ChangeDetectorRef
   ) {  }
   
 
 
   ngOnInit(): void {
      this.cargar();
+     
   }
 
 
@@ -44,20 +47,13 @@ export class ListaSucursalComponent implements OnInit {
           console.log(resp);
           //this.usuarios = resp;
           this.dataSource = resp;
-
+          this.changeDetectorRefs.detectChanges();
         }); 
   }
   
-  createE(){
-    
-    let sucursal:Sucursal=null;
-    /* {
-      id: null,
-      cod_sucursal: '',
-      nombre: ''         
-    }  */
-    this.createElement(sucursal);
- 
+  createE(){    
+    let sucursal:Sucursal=null;   
+    this.createElement(sucursal); 
   }
   
   createElement(element: Sucursal): void {
@@ -93,10 +89,10 @@ export class ListaSucursalComponent implements OnInit {
         .subscribe(() => {
         console.log("exito");
         });  
+        
       }
     }); 
-    
-    
+    this.sucursales
     
   }
 

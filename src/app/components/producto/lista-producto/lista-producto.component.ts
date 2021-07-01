@@ -36,12 +36,13 @@ export class ListaProductoComponent implements OnInit {
   dataSource = this.productos;
   
 
+  createE(){    
+    let producto:Producto=null;   
+    this.createElement(producto); 
+  }
   
 
-  openDialog(element: Producto | null): void {
-
-
-
+  createElement(element: Producto | null): void {
     const dialogRef = this.dialog.open(ProductoComponent,{
         width: '280px',
         data: element === null ? {
@@ -74,10 +75,18 @@ export class ListaProductoComponent implements OnInit {
           this.table.renderRows();
         }
         
+        this.productoService.create(result)
+            .subscribe(() => {
+              console.log("Producto guardado con exito");
+            });
+
       }
     });
   }
 
+
+
+  
   deleteElement(id: number): void{
     this.dataSource = this.dataSource.filter(p=> p.id !== id);
 
@@ -90,7 +99,7 @@ export class ListaProductoComponent implements OnInit {
   }
 
   editElement(element: Producto): void{
-    this.openDialog(element);
+    this.createElement(element);
   }
 
 }

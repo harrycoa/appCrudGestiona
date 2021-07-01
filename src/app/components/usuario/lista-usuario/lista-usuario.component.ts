@@ -39,12 +39,12 @@ export class ListaUsuarioComponent implements OnInit {
   dataSource = this.usuarios;
   
 
-  
+  createE(){    
+    let usuario:Usuario=null;   
+    this.createElement(usuario); 
+  }
 
-  openDialog(element: Usuario | null): void {
-
-
-
+  createElement(element: Usuario | null): void {
     const dialogRef = this.dialog.open(UsuarioComponent,{
         width: '280px',
         data: element === null ? {
@@ -81,10 +81,11 @@ export class ListaUsuarioComponent implements OnInit {
           this.table.renderRows();
         }
         // antiguo
+        this.usuarioService.createUser(result)
+        .subscribe(() => {
+        console.log("exito");
+        });  
 
-
-        //this.dataSource.push(result);
-        //this.table.renderRows();
       }
     });
   }
@@ -101,7 +102,7 @@ export class ListaUsuarioComponent implements OnInit {
   }
 
   editElement(element: Usuario): void{
-    this.openDialog(element);
+    this.createElement(element);
   }
 
 }
