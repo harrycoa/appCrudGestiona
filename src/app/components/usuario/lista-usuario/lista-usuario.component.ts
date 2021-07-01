@@ -35,7 +35,7 @@ export class ListaUsuarioComponent implements OnInit {
 
         }); 
   }
-  displayedColumns: string[] = ['id','cod_usuario', 'nombre', 'usuario', 'password', 'sucursal_id','actions'];
+  displayedColumns: string[] = ['id','cod_usuario', 'nombre', 'usuario', 'password', 'sucursal','actions'];
   dataSource = this.usuarios;
   
 
