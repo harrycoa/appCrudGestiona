@@ -25,7 +25,11 @@ export class ListaProductoComponent implements OnInit {
 
 
   ngOnInit(): void {
-     this.productoService.getAll()
+     this.cargar();
+  }
+
+  cargar(){
+    this.productoService.getAll()
         .subscribe( resp => {
           console.log(resp);
           this.dataSource = resp;
@@ -63,21 +67,10 @@ export class ListaProductoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log("fue cerrado");
-      if  (result !== undefined){
-
-
-
-        if(this.dataSource.map(p => p.id).includes(result.id)){
-          this.dataSource[result.id - 1] = result;
-          this.table.renderRows();
-        } else {
-          this.dataSource.push(result);
-          this.table.renderRows();
-        }
-        
+      if  (result !== undefined){        
         this.productoService.create(result)
             .subscribe(() => {
-              console.log("Producto guardado con exito");
+              this.cargar();
             });
 
       }

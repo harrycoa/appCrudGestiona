@@ -73,26 +73,14 @@ export class ListaSucursalComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log("fue cerrado");
       if  (result !== undefined){
-        if(this.dataSource.map(p => p.id).includes(result.id)){
-          this.dataSource[result.id - 1] = result;
-          this.table.renderRows();
-          //this.cargar();
-        } else {
-          console.log("aqui");
-          
-          this.dataSource.push(result);                  
-          
-          this.table.renderRows();  
-        }    
-
         this.sucursalService.create(result)
         .subscribe(() => {
-        console.log("exito");
+        this.cargar();
         });  
         
       }
     }); 
-    this.sucursales
+    
     
   }
 
@@ -105,7 +93,7 @@ export class ListaSucursalComponent implements OnInit {
     console.log(id);
     this.sucursalService.delete(id)
       .subscribe(resp => {
-        console.log(resp);
+        this.cargar();
       });
 
   }

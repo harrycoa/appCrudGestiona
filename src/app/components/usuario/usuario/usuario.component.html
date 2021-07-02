@@ -30,7 +30,13 @@
 
   <mat-form-field appearance="fill">
     <mat-label>ID_SUCURSAL</mat-label>
-    <input matInput [(ngModel)]="data.sucursal_id">
+    <div *ngIf="isChange" >
+      <input matInput [(ngModel)]="data.sucursal.id" readonly disabled>
+    </div>
+    <div *ngIf="!isChange" >
+      <input matInput [(ngModel)]="data.sucursal.id" >
+    </div>
+    
   </mat-form-field>
 
  
