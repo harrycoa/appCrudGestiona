@@ -9,7 +9,7 @@
  <br>
   <mat-form-field appearance="fill">
     <mat-label>COD_USUARIO</mat-label>
-    <input matInput [(ngModel)]="data.cod_usuario">
+    <input matInput [(ngModel)]="data.cod_usuario" minlength="2" maxlength="2">
   </mat-form-field>
 <br>
   <mat-form-field appearance="fill">
@@ -24,17 +24,17 @@
 <br>
   <mat-form-field appearance="fill">
     <mat-label>PASSWORD</mat-label>
-    <input matInput [(ngModel)]="data.password">
+    <input matInput [(ngModel)]="data.password"  type="password">
   </mat-form-field>
 <br>
 
   <mat-form-field appearance="fill">
     <mat-label>ID_SUCURSAL</mat-label>
     <div *ngIf="isChange" >
-      <input matInput [(ngModel)]="data.sucursal.id" readonly disabled>
+      <input matInput [(ngModel)]="data.sucursal.id" readonly disabled type="number">
     </div>
     <div *ngIf="!isChange" >
-      <input matInput [(ngModel)]="data.sucursal.id" >
+      <input matInput [(ngModel)]="data.sucursal.id" type="number" >
     </div>
     
   </mat-form-field>
